@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}User register {% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Student Registration</h3>
+   <hr>
+
+   <form action="" method="post" novalidate class="shadow p-5">
+      {% csrf_token %}
+      {% for fom in form %}
+    <div class=" form-group mb-3">
+     {{fom.label_tag}} {{fom}}<small class="text-danger" >{{fom.errors|striptags}}</small>
+    </div>
+      {% endfor %}
+     <input type="submit"  value="Submit" class="btn btn-primary">
+    <br>
+   
+    <div class="invalid_feedback invalid-feedback" style="display:none;"></div>
+    <div class="text-center text-primary fw-bold"><small>Existing User ? <a href=""
+       class="text-danger">Login Now</a> </small></div>
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <p class="alert alert-danger my-3">{{error}}</p>
+        {% endfor %}
+      {% endif %}
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
